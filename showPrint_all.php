@@ -112,7 +112,7 @@ $objQueryprint = mysqli_query($dbconfig, $sqlprintall);
                                                 } else {
                                                     $color = 'สี';
                                                 }
-                                                
+
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $objResultprint["print_id"]; ?></td>

@@ -17,7 +17,19 @@ if ($_SESSION['UserID'] == "") {
         <ul id="sidebar" class="nav">
             <li></li>
             <li class="current"><a href="index.php"><i class="fa fa-home"></i> หน้าแรก</a></li>
-            <li><a href="forms.php"><i class="fa fa-file-text-o"></i> แบบฟอร์มต่างๆ</a></li>
+            <li><a href="forms.php"><i class="fa fa-file-text-o"></i> เอกสารแบบฟอร์ม</a></li>
+            <li><a href="profile.php"><i class="fa fa-user"></i> ข้อมูลส่วนตัว</a></li>
+
+            <li class="submenu">
+                <a href="#">
+                    <i class="fa fa-clipboard"></i> ระบบงานซัพพอร์ตลูกค้า
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul>
+                    <li><a href="addSupportTK.php">เปิดรายงาน</a></li>
+                    <li><a href="#">ดูรายงานทั้งหมด</a></li>
+                </ul>
+            </li>
             <!--
             <li class="submenu">
                 <a href="#">
@@ -30,6 +42,7 @@ if ($_SESSION['UserID'] == "") {
                     <li><a href="print_our.php">ประวัติการพิมพ์</a></li>
                 </ul>
             </li>
+
             <li class="submenu">
                 <a href="#">
                     <i class="fa fa-street-view"></i> รายงานออกนอกพื้นที่
@@ -40,9 +53,9 @@ if ($_SESSION['UserID'] == "") {
                     <li><a href="#">รายการทั้งหมด</a></li>
                 </ul>
             </li>
-            -->
             <li><a href="maps.php"><i class="fa fa-building-o"></i> ผู้บริหารและพนักงาน</a></li>
+            -->
             <li><a href="logout.php"><i class="fa fa-power-off"></i> ออกจากระบบ</a></li>
         </ul>
     </div>
-</div> 
+</div>

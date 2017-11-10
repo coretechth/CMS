@@ -1,6 +1,5 @@
 <?php include './header.php'; ?>
 <?php include './navbar.php'; ?>
-
 <div class="page-content">
     <div class="row">
         <?php include './sidebar.php'; ?>
@@ -24,21 +23,21 @@
                                     <label>ตำแหน่ง</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-suitcase"></i></span>
-                                        <input name="txtPosition" class="form-control" type="text">
+                                        <input name="txtPosition" class="form-control" value="<?php echo $_SESSION["position"]; ?>" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>อีเมลล์</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-envelope"></i></span>
-                                        <input name="txtEmail" class="form-control" type="email">
+                                        <input name="txtEmail" class="form-control" value="<?php echo $_SESSION["email"]; ?>" type="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>เบอร์โทร</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-phone"></i></span>
-                                        <input name="txtTel" class="form-control" type="tel">
+                                        <input name="txtTel" class="form-control" value="<?php echo $_SESSION["tel"]; ?>" type="tel">
                                     </div>
                                 </div>
                             </fieldset>

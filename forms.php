@@ -11,7 +11,7 @@
                     <h4 style="text-align: center; padding-bottom: 20px;">ดาวน์โหลดเอกสารแบบฟอร์มหรือเอกสารต่างๆที่ใช้ในสำนักงาน</h4>
                     <div id="download">
 
-                        
+
                         <div class="col-md-3">
                             <div class="sidebar" style="display: block;">
                                 <ul id="sidebar" class="nav">
@@ -27,7 +27,7 @@
                                             <li><a href="#"><i class="fa fa-download" style="padding-right: 5px;"></i> ใบรับประกันโครงการ</a></li>
                                         </ul>
                                     </li>
-                                    
+
                                     <li><a href="#"><i class="fa fa-file-pdf-o" style="padding-right: 5px;"></i>แบบฟอร์มใบขออนุญาตเข้าสต็อก</a></li>
                                     <li><a href="#"><i class="fa fa-file-pdf-o" style="padding-right: 5px;"></i>แบบฟอร์มหนังสือมอบอำนาจ</a></li>
                                 </ul>
@@ -95,7 +95,15 @@
                                         </a>
                                         <ul>
                                             <li><a href="upload/PSLxDisplay.rar"><i class="fa fa-download" style="padding-right: 5px;"></i> ดาวน์โหลด</a></li>
-                                            <li><a href="#"><i class="fa fa-file-pdf-o" style="padding-right: 5px;"></i> วิธีการลงฟ้อนต์</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#">
+                                            <i class="fa fa-file-archive-o"></i> ฟ้อนต์ TH SarabunPSK
+                                            <span class="caret pull-right"></span>
+                                        </a>
+                                        <ul>
+                                            <li><a href="upload/th-sarabun-psk.zip"><i class="fa fa-download" style="padding-right: 5px;"></i> ดาวน์โหลด</a></li>
                                         </ul>
                                     </li>
                                 </ul>
