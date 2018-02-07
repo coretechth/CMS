@@ -8,7 +8,7 @@ if ($_SESSION['UserID'] == "") {
     <div class="sidebar content-box" style="display: block;">
         <div class="row">
             <div class="col-md-10 col-xs-10">
-                <div style="text-align: left; padding-bottom: 10px; padding-left: 10px;">ยินดีต้อนรับ, <a href="profile.php"><?php echo $_SESSION['UserID']; ?></a></div>
+                <div style="text-align: left; padding-bottom: 10px; padding-left: 10px;">ยินดีต้อนรับ, <a href="profile.php"><?php echo $_SESSION['UserID'].$_SESSION["rolee"]; ?></a></div>
             </div>
             <div class="col-md-2 col-xs-2">
                 <a onclick="hideMenuSide()" style="padding-right: 20px; color: #333"><i class="fa fa-bars"></i></a>
@@ -18,7 +18,7 @@ if ($_SESSION['UserID'] == "") {
             <li></li>
             <li class="current"><a href="index.php"><i class="fa fa-home"></i> หน้าแรก</a></li>
             <li><a href="forms.php"><i class="fa fa-file-text-o"></i> เอกสารแบบฟอร์ม</a></li>
-            <li><a href="profile.php"><i class="fa fa-user"></i> ข้อมูลส่วนตัว</a></li>
+            <li><a href="profile.php"><i class="far fa-address-card"></i> ข้อมูลส่วนตัว</a></li>
 
             <li class="submenu">
                 <a href="#">
@@ -28,6 +28,24 @@ if ($_SESSION['UserID'] == "") {
                 <ul>
                     <li><a href="addSupportTK.php">เปิดรายงาน</a></li>
                     <li><a href="#">ดูรายงานทั้งหมด</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="#">
+                    <i class="fa fa-user"></i> ข้อมูลลูกค้า/โครงการ
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul>
+                  <?php
+                  if (isset($_SESSION['rolee']) && !empty($_SESSION['rolee'])) {
+                    $role = $_SESSION['rolee'];
+                      if($role==3){
+                        echo '<li><a href="add_customer.php">เพิ่มลูกค้า</a></li>';
+                      }
+                  }
+                  ?>
+
+                    <li><a href="search_customer.php">ค้นหาข้อมูลลูกค้า</a></li>
                 </ul>
             </li>
             <!--

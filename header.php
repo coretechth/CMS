@@ -7,7 +7,7 @@
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <!-- styles -->
         <link href="css/styles.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
         <link href="font/stylesheet.css" rel="stylesheet">
 
         <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">

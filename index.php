@@ -1,4 +1,4 @@
-<?php 
+<?php
 include './header.php';
 include './navbar.php';
 
@@ -16,7 +16,6 @@ include './navbar.php';
                 <h4 style="text-align: center; padding-bottom: 20px;">(มาตรา 39 นายจ้างประกาศกำหนดวันหยุดตามประเพณีให้ลูกจ้างทราบล่วงหน้า)</h4>
                 <div style="text-align: center;"><a href="upload/Holiday.pdf" target="_bank" class="btn btn-success" style="font-size: 20px;">ตารางวันหยุดประจำปี 2017</a></div>
             </div>
-            
         </div>
     </div>
 </div>
