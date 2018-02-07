@@ -27,7 +27,7 @@ $objQuery = mysqli_query($dbconfig, $sqlidsel);
           if($x>=10){
             $id = "CUS".date("Y")."-"."0".$x;
           }else {
-            $id = "CUS".date("Y")."-"."00".$x; 
+            $id = "CUS".date("Y")."-"."00".$x;
           }
         }else {
           $x = ($p2.$p3)+1;

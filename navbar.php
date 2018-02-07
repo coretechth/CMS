@@ -17,7 +17,7 @@
                                     <li><a href="#">Logout</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> 
                     </nav>-->
                 </div>
             </div>
