@@ -9,7 +9,10 @@ $objQuery = mysqli_query($dbconfig, $strSQL);
 	$objResult = mysqli_fetch_array($objQuery);
 	if(!$objResult)
 	{
-			header("location:login.php");
+		echo "<script>
+alert('Username หรือ Password ไม่ถูกต้อง กรุณาเข้าสู่ระบบใหม่');
+window.location.href='login.php';
+</script>";
 	}
 	else
 	{

@@ -50,12 +50,12 @@ $objQuery = mysqli_query($dbconfig, $sqlidsel);
       if ($objQuery2) {
           echo "<script>
       alert('บันทึกข้อมูลเรียบร้อยแล้ว');
-      window.location.href='index.php';
+      window.location.href='search_customer.php';
       </script>";
       } else {
         echo "<script>
     alert('บันทึกข้อมูลไม่สำเร็จ');
-    window.location.href='index.php';
+    window.location.href='add_customer.php';
     </script>";
   }
       echo $sqlinst;

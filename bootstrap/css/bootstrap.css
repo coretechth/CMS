@@ -1673,6 +1673,7 @@ th {
 .table > colgroup + thead > tr:first-child > td,
 .table > thead:first-child > tr:first-child > td {
   border-top: 0;
+  font-weight: 700;
 }
 
 .table > tbody + tbody {
@@ -2347,8 +2348,8 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #357ebd;
+  background-color: #0089ff;
+  /*border-color: #357ebd;*/
 }
 
 .btn-primary:hover,
@@ -2393,8 +2394,8 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-warning {
   color: #ffffff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #ff9600;
+  /*border-color: #eea236;*/
 }
 
 .btn-warning:hover,

@@ -28,19 +28,19 @@ ini_set('display_errors', 1);
                                 </div>
                             </fieldset>
                             <div style="text-align: right">
-                                <button class="btn btn-warning" type="submit"><i class="fas fa-search" style="padding-right: 5px;"></i> ค้นหา</button>
+                                <button class="btn btn" type="submit"><i class="fas fa-search" style="padding-right: 5px;"></i> ค้นหา</button>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-4 col-xs-12"></div>
                 </div>
                 <div class="row" style="padding-top: 30px;">
-                  <div class="col-md-1"></div>
-                  <div class="col-md-10">
+                  <div class="col-md-12">
                     <?php
-                      $sqlselCus = "SELECT * FROM customer_master WHERE cus_id LIKE '%$strKeyword%' OR permit_id LIKE '%$strKeyword%' OR cus_name LIKE '%$strKeyword%' OR cus_initials LIKE '%$strKeyword%' OR contact_name LIKE '%$strKeyword%' or contact_tel LIKE '%$strKeyword%'";
+                      $sqlselCus = "SELECT * FROM customer_master WHERE Is_del = 0 AND (cus_id LIKE '%$strKeyword%' OR permit_id LIKE '%$strKeyword%' OR cus_name LIKE '%$strKeyword%' OR cus_initials LIKE '%$strKeyword%' OR contact_name LIKE '%$strKeyword%' or contact_tel LIKE '%$strKeyword%')";
                       $objQuery2= mysqli_query($dbconfig, $sqlselCus);
                     ?>
+										<div class="table-responsive">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
@@ -50,7 +50,7 @@ ini_set('display_errors', 1);
                           <th scope="col">ชื่อเรียก</th>
                           <th scope="col">ชื่อผู้ติดต่อ</th>
                           <th scope="col">เบอร์โทร</th>
-                          <th scope="col">รายละเอียด</th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -66,7 +66,8 @@ ini_set('display_errors', 1);
                           <td><?php echo $objResultselCus["cus_initials"]; ?></td>
                           <td><?php echo $objResultselCus["contact_name"]; ?></td>
                           <td><?php echo $objResultselCus["contact_tel"]; ?></td>
-                          <td><a href="#" class="btn btn-info" role="button">รายละเอียด</a></td>
+                          <td style="font-size : 15px;"><!--<a href="#" class="btn btn-primary" role="button" style="margin-right:3px;"><i class="fas fa-search"></i></a>-->
+													<a href="edit_customer.php?id=<?php echo $objResultselCus['cus_id']; ?>" class="btn btn-warning" role="button"><i class="far fa-edit"></i></a></td>
                         </tr>
                         <?php
                             }
@@ -74,11 +75,11 @@ ini_set('display_errors', 1);
                             ?>
                       </tbody>
                     </table>
+									</div>
                     <div class="" style="text-align:center; color: gray; font-style: italic;">
                       พบข้อมูลจำนวน <?php echo $xt; ?> แถว
                     </div>
                   </div>
-                  <div class="col-md-1"></div>
                 </div>
             </div>
         </div>
