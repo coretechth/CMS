@@ -3,17 +3,29 @@ include './dbconfig.php';
 include './header.php';
 include './navbar.php';
 
-$tkID = "TK".date("Y").date("m")."-";
-$sqlProjectName = "SELECT * FROM Project"
+$sqlAllcus = "SELECT * FROM customer_master WHERE Is_del = 0";
+$objQuery = mysqli_query($dbconfig, $sqlAllcus);
 
 ?>
+<script language="javascript">
+var w = 650, // width of your block
+        h = 500, // height of your block
+        l = (screen.width - w)/2, // block left position
+        t = (screen.height -h)/2; //block top position
 
+	function OpenPopup()
+	{
+    window.open('sel_customer.php','myPopup','height=' + h + ',width=' + w + ',top=' + t + ',left=' + l);
+		/*window.open('search_customer.php','myPopup','width=650,height=500,toolbar=0, menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');*/
+	}
+
+</script>
 <div class="page-content">
     <div class="row">
         <?php include './sidebar.php'; ?>
         <div class="col-md-10">
             <div class="content-box-large">
-                <h2 style="text-align: center;">ระบบงานซัพพอร์ตลูกค้า</h2>
+                <h2 style="text-align: center;">เปิดรายงาน</h2>
                 <div class="row" style="padding-top: 30px;">
                   <div class="col-md-4 col-xs-12"></div>
                     <div class="col-md-4 col-xs-12">
@@ -24,18 +36,15 @@ $sqlProjectName = "SELECT * FROM Project"
                                     <input class="form-control" value="<?php echo $_SESSION["fullname"]; ?>" type="text" readonly="">
                                 </div>
                                 <div class="form-group">
-                                    <label>ส่วนงาน</label>
-                                    <select class="form-control" id="select-1">
-                                        <option>งานซ่อมบำรุงรักษา</option>
-                                        <option>งานติดตั้งระบบ</option>
-                                        <option>งานสำรวจโครงการใหม่</option>
-                                        <option>งานการเงินและบัญชี</option>
-                                        <option>งานควบคุมจัดส่งสินค้า</option>
-                                        <option>งานประชุมทั่วไป</option>
-                                        <option>อื่นๆ</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
+                                    <label>ลูกค้า/โครงการ</label>
+                                    <div class="">
+                                      <input class="form-control" type="text" readonly="" style="width:90%; display: inline;" >
+                                      <a href="#" class="btn btn-default" onclick="OpenPopup()">...</a>
+                                    </div>
+
+
+
+                                <!--<div class="form-group">
                                     <label>สถานที่</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-map-marker"></i></span>
@@ -45,7 +54,7 @@ $sqlProjectName = "SELECT * FROM Project"
                                 <div class="form-group">
                                     <label>รายละเอียด</label>
                                     <textarea class="form-control" placeholder="" rows="3"></textarea>
-                                </div>
+                                </div>-->
                             </fieldset>
                             <hr>
                             <div style="text-align: left">
