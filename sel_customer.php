@@ -42,6 +42,7 @@ ini_set('display_errors', 1);
                     <table class="table table-bordered">
                       <thead>
                         <tr>
+                          <th></th>
                           <th scope="col">รหัสลูกค้า</th>
                           <th scope="col">เลขที่สัญญา</th>
                           <th scope="col">ชื่อลูกค้า/โครงการ</th>
