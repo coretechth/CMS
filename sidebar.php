@@ -27,7 +27,7 @@ if ($_SESSION['UserID'] == "") {
                 </a>
                 <ul>
                     <li><a href="addSupportTK.php">เปิดรายงาน</a></li>
-                    <li><a href="#">ดูรายงานทั้งหมด</a></li>
+                    <li><a href="search_job.php">ดูรายงานทั้งหมด</a></li>
                 </ul>
             </li>
             <li class="submenu">

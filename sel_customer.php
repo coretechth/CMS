@@ -10,6 +10,24 @@ ini_set('display_errors', 1);
 		$strKeyword = $_POST["txtSerach"];
 	}
 ?>
+<script language="javascript">
+	function selData(CustomerID,CustomerName,CustomerConN,CustomerConT)
+	{
+		var sCustomerID = self.opener.document.getElementById("txtCusID");
+		sCustomerID.value = CustomerID;
+
+		var sName = self.opener.document.getElementById("txtCustomername");
+		sName.value = CustomerName;
+
+		var sCustomerConN = self.opener.document.getElementById("txtCuscontact");
+		sCustomerConN.value = CustomerConN;
+
+		var sCustomerConT = self.opener.document.getElementById("txtCustel");
+		sCustomerConT.value = CustomerConT;
+
+		window.close();
+	}
+</script>
 <div class="page-content">
     <div class="row">
         <div class="col-md-10">
@@ -42,14 +60,9 @@ ini_set('display_errors', 1);
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th></th>
-                          <th scope="col">รหัสลูกค้า</th>
-                          <th scope="col">เลขที่สัญญา</th>
-                          <th scope="col">ชื่อลูกค้า/โครงการ</th>
-                          <th scope="col">ชื่อเรียก</th>
-                          <th scope="col">ชื่อผู้ติดต่อ</th>
-                          <th scope="col">เบอร์โทร</th>
-                          <th scope="col"></th>
+													<th scope="col"></th>
+                          <th scope="col" width="15%">รหัสลูกค้า</th>
+													<th scope="col">ชื่อลูกค้า/โครงการ</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -59,14 +72,12 @@ ini_set('display_errors', 1);
                             $xt += 1;
                             ?>
                         <tr>
+													<td style="font-size : 20px; text-align: center;"><!--<a href="#" class="btn btn-primary" role="button" style="margin-right:3px;"><i class="fas fa-search"></i></a>-->
+													<a href="#" class="btn btn-success" role="button"
+													onclick="selData('<?php echo $objResultselCus["cus_id"];?>','<?php echo $objResultselCus["cus_name"];?>',
+													'<?php echo $objResultselCus["contact_name"];?>','<?php echo $objResultselCus["contact_tel"];?>');">เลือก</a></td>
                           <td><?php echo $objResultselCus["cus_id"]; ?></td>
-                          <td><?php echo $objResultselCus["permit_id"]; ?></td>
-                          <td><?php echo $objResultselCus["cus_name"]; ?></td>
-                          <td><?php echo $objResultselCus["cus_initials"]; ?></td>
-                          <td><?php echo $objResultselCus["contact_name"]; ?></td>
-                          <td><?php echo $objResultselCus["contact_tel"]; ?></td>
-                          <td style="font-size : 15px;"><!--<a href="#" class="btn btn-primary" role="button" style="margin-right:3px;"><i class="fas fa-search"></i></a>-->
-													<a href="edit_customer.php?id=<?php echo $objResultselCus['cus_id']; ?>" class="btn btn-warning" role="button"><i class="far fa-edit"></i></a></td>
+													<td><?php echo $objResultselCus["cus_name"]; ?></td>
                         </tr>
                         <?php
                             }
