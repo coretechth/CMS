@@ -78,16 +78,16 @@ var w = 500, // width of your block
                                       <label>กำหนดเสร็จ</label>
                                       <div class="input-group">
                                           <span class="input-group-addon" id="sizing-addon2"><i class="fas fa-file-alt"></i></span>
-                                          <input id="txtJobEnd"  name="txtJobEnd" type="date" class="form-control" placeholder="" >
+                                          <input id="txtJobEnd"  name="txtJobEnd" type="date" class="form-control" placeholder="" required>
                                       </div>
                                   </div>
                                   <div class="form-group">
                                       <label>ระดับความสำคัญ </label>
                                       <select id="objLevel"  name="objLevel" class="form-control">
-                                        <option value="1">เร่งด่วนมาก</option>
-                                        <option value="2">เร่งด่วน</option>
-                                        <option value="3">ปานกลาง</option>
-                                        <option value="4">ปกติ</option>
+                                        <option value="1">ปกติ</option>
+                                        <option value="2">ปานกลาง</option>
+                                        <option value="3">เร่งด่วน</option>
+                                        <option value="4">เร่งด่วนมาก</option>
                                       </select>
                                   </div>
 
@@ -106,9 +106,9 @@ var w = 500, // width of your block
                                 </div>-->
                             </fieldset>
                             <hr>
-                            <div style="text-align: right">
+                            <div style="text-align: center">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-save" style="padding-right: 5px;"></i> เปิดรายงาน</button>
-                                <button class="btn btn-danger" type="reset"><i class="fa fa-close" style="padding-right: 5px;"></i> ยกเลิก</button>
+                                <a href="index.php" class="btn btn-default"><i class="fas fa-undo-alt" style="padding-right: 5px;"></i> ย้อนกลับ</a>
                             </div>
                         </form>
                     </div>

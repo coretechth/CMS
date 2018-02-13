@@ -8,7 +8,7 @@ if ($_SESSION['UserID'] == "") {
     <div class="sidebar content-box" style="display: block;">
         <div class="row">
             <div class="col-md-10 col-xs-10">
-                <div style="text-align: left; padding-bottom: 10px; padding-left: 10px;">ยินดีต้อนรับ, <a href="profile.php"><?php echo $_SESSION['UserID'].$_SESSION["rolee"]; ?></a></div>
+                <div style="text-align: left; padding-bottom: 10px; padding-left: 10px;">ยินดีต้อนรับ, <a href="profile.php"><?php echo $_SESSION['UserID']; ?></a></div>
             </div>
             <div class="col-md-2 col-xs-2">
                 <a onclick="hideMenuSide()" style="padding-right: 20px; color: #333"><i class="fa fa-bars"></i></a>

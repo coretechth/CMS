@@ -57,7 +57,7 @@
                                     <h3>แบบของใช้สำนักงาน</h3>
                                     <li></li>
                                     <li><a href="upload/Document.docx"><i class="fa fa-file-text-o"></i> เอกสารหัวจดหมาย</a></li>
-                                    <li><a href="upload/Coretech Power Point template.pptx"><i class="fa fa-file-powerpoint"></i> แบบนำเสนองาน</a></li>
+                                    <li><a href="upload/Coretech Power Point template.pptx"><i class="far fa-file-powerpoint"></i> แบบนำเสนองาน</a></li>
                                     <li class="submenu">
                                         <a href="#">
                                             <i class="fa fa-envelope-o"></i> แบบซองจดหมาย (ขาว)

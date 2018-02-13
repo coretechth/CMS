@@ -32,23 +32,24 @@ if($row==0){
       $x = $p3+1;
       /*ตรวจสอบผลการบวกเลข = 01X */
       if($x>=10){
-        $id = "JOB".date("Y")."-"."0".$x;
+        $id = "JOB".date("Y").date("m")."-"."0".$x;
       }else {
-        $id = "JOB".date("Y")."-"."00".$x;
+        $id = "JOB".date("Y").date("m")."-"."00".$x;
       }
     }else {
       $x = ($p2.$p3)+1;
       if($x>=100){
-        $id = "JOB".date("Y")."-".$x;
+        $id = "JOB".date("Y").date("m")."-".$x;
       }else {
-        $id = "JOB".date("Y")."-"."0".$x;
+        $id = "JOB".date("Y").date("m")."-"."0".$x;
       }
     }
   }else {
     $x = $cusid+1;
-    $id = "JOB".date("Y")."-".$x;
+    $id = "JOB".date("Y").date("m")."-".$x;
   }
 }
+
 $sqlinst = "INSERT INTO jobs_master (job_id, job_title, job_detail, username, Cus_id, contact_name, contact_tel, job_status, job_end, job_level, create_date, Is_del)";
 $sqlinst .= " VALUES ('$id','$JobName','$JobDetail','$user','$CusID','$Cuscontact','$Custel',1,'$JobEnd','$objLevel',NOW(),0)";
 

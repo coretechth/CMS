@@ -48,18 +48,22 @@ $objQuery = mysqli_query($dbconfig, $sqlidsel);
 
       $objQuery2 = mysqli_query($dbconfig, $sqlinst);
       if ($objQuery2) {
-          echo "<script>
-      alert('บันทึกข้อมูลเรียบร้อยแล้ว');
-      window.location.href='search_customer.php';
-      </script>";
+          echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว');window.location.href='search_customer.php';</script>";
       } else {
-        echo "<script>
-    alert('บันทึกข้อมูลไม่สำเร็จ');
-    window.location.href='add_customer.php';
-    </script>";
-  }
-      echo $sqlinst;
+        echo "<script>alert('บันทึกข้อมูลไม่สำเร็จ');window.location.href='add_customer.php';</script>";
+  		}
 
+	}else {
+		$id = "CUS".date("Y")."-001";
+		$sqlinst = "INSERT INTO Customer_master (cus_id, permit_id, cus_name, cus_initials, contact_name, contact_tel, address, cus_status, Is_del)";
+		$sqlinst .= " VALUES ('$id','$permit','$name','$nickname','$cname','$tel','$address',1,0)";
+
+		$objQuery2 = mysqli_query($dbconfig, $sqlinst);
+		if ($objQuery2) {
+				echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว');window.location.href='search_customer.php';</script>";
+		} else {
+			echo "<script>alert('บันทึกข้อมูลไม่สำเร็จ');window.location.href='add_customer.php';</script>";
+		}
 	}
 
 ?>
