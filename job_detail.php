@@ -4,8 +4,13 @@ include './header.php';
 include './navbar.php';
 
 $job_id = $_REQUEST['id'];
-
 ?>
+<script>
+function myFunction() {
+    window.print();
+}
+</script>
+
 <div class="page-content">
     <div class="row">
         <?php include './sidebar.php'; ?>
@@ -41,6 +46,10 @@ $job_id = $_REQUEST['id'];
                         $fullname = $objResult["username"];
 
                         ?>
+                        <div class="row" style="text-align:right; padding-bottom:10px;">
+                          <a href="print_job.php?job_id=<?php echo $job_id; ?>" target="popup" class="btn btn-default">
+                            <i class="fas fa-print"></i> พิมพ์รายงาน</a>
+                        </div>
                         <div class="row borderbox">
                             <h3>ข้อมูลรายการ</h3>
                             <div class="row">
@@ -100,7 +109,7 @@ $job_id = $_REQUEST['id'];
                             </div>
                         </div>
                         <div class="row borderbox" style="margin-top:20px;">
-                            <h3>รายงานผลการดำเนินงาน</h3>
+                            <h3>ประวัติการรายงานผลการดำเนินงาน</h3>
                             <?php
                               $sqlJobDetail = "SELECT * FROM jobs_detail WHERE job_id = '".$job_id."' AND Is_del = 0";
                               $objQueryJobDetail= mysqli_query($dbconfig, $sqlJobDetail);
@@ -112,8 +121,12 @@ $job_id = $_REQUEST['id'];
                               <div class="col-md-2 col-xs-5" style="text-align:right"><?php echo date_format($ddate,"Y-m-d"); ?></div>
                               <div class="col-md-9 col-xs-5" style="text-align:left"><?php echo $objResultselCus["job_detail"]; ?></div>
                               <div class="col-md-1 col-xs-2" style="text-align:right">
-                                <a href="del_job_detail.php?id=<?php echo $objResultselCus['jd_id']; ?>&jobid=<?php echo $job_id; ?>" 
-                                  class="btndeljb" onclick="return confirm('ต้องการลบข้อมูลใช่หรือไม่?');">ลบ</a>
+                               <?php   if($_SESSION["fullname"] == $fullname && $job!=3 && $job!=4){?>
+                                 ?>
+                                 <a href="del_job_detail.php?id=<?php echo $objResultselCus['jd_id']; ?>&jobid=<?php echo $job_id; ?>"
+                                   class="btndeljb" onclick="return confirm('ต้องการลบข้อมูลใช่หรือไม่?');">ลบ</a>
+                                 <?php
+                               }?>
                               </div>
                             </div>
                           <?php } ?>
@@ -122,22 +135,27 @@ $job_id = $_REQUEST['id'];
                       }
                     ?>
                     <?php
-                      if($_SESSION["fullname"] == $fullname){?>
+                      if($_SESSION["fullname"] == $fullname && $job!=3 && $job!=4){?>
+
                         <div class="row" style="margin-top:20px;">
                           <form method="post" action="add_job_detail.php" onsubmit="return confirm('ต้องการบันทึกความคืบหน้างานใช่หรือไม่?');">
                             <fieldset>
                               <div class="form-group">
-                                <textarea id="txtJobUpdate" name="txtJobUpdate" class="form-control" placeholder="กรุณากรอกความคืบหน้าของงานหรือผลการดำเนินงาน" rows="2" required></textarea>
+                                <label>สถานะงาน</label>
+                                <div class="">
+                                  <input type="radio" name="status" value="2" checked> อยู่ระหว่างดำเนินการ
+                                  <input style="margin-left: 15px;" type="radio" name="status" value="3"> งานเสร็จเรียบร้อย
+                                  <input style="margin-left: 15px;" type="radio" name="status" value="4"> ลบงาน
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <textarea id="txtJobUpdate" name="txtJobUpdate" class="form-control" placeholder="กรุณากรอกรายละเอียด" rows="2" required></textarea>
                                 <input id="txtJobidd" name="txtJobidd" type="text" name="" value="<?php echo $job_id; ?>" style="display:none">
                               </div>
                             </fieldset>
                             <hr>
                             <div style="text-align: center">
-                                <button class="btn btn-warning" type="submit"><i class="far fa-edit" style="padding-right: 5px;"></i> รายงานความคืบหน้า</button>
-                                <a href="#" class="btn btn-success" onclick="return confirm('ต้องการปิดงานใช่หรือไม่?');">
-                                  <i class="fas fa-download" style="padding-right: 5px;"></i> งานเสร็จเรียบร้อย</a>
-                                <a href="#" class="btn btn-danger" onclick="return confirm('ต้องการลบงานใช่หรือไม่?');">
-                                  <i class="fas fa-ban" style="padding-right: 5px;"></i> ลบงาน</a>
+                                <button class="btn btn-success" type="submit"><i class="far fa-edit" style="padding-right: 5px;"></i> บันทึกรายงาน</button>
                                 <a href="search_job.php" class="btn btn-default"><i class="fas fa-undo-alt" style="padding-right: 5px;"></i> ย้อนกลับ</a>
                             </div>
                           </form>

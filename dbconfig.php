@@ -16,4 +16,5 @@ $database = 'coretech_coretech40';
 $dbconfig = mysqli_connect($host,$username,$password,$database);
 mysqli_set_charset($dbconfig, "utf8");
 
+
 ?>
