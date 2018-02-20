@@ -84,10 +84,10 @@ var w = 500, // width of your block
                                   <div class="form-group">
                                       <label>ระดับความสำคัญ </label>
                                       <select id="objLevel"  name="objLevel" class="form-control">
-                                        <option value="1">ปกติ</option>
-                                        <option value="2">ปานกลาง</option>
-                                        <option value="3">เร่งด่วน</option>
-                                        <option value="4">เร่งด่วนมาก</option>
+                                        <option value="4">ปกติ</option>
+                                        <option value="3">ปานกลาง</option>
+                                        <option value="2">เร่งด่วน</option>
+                                        <option value="1">เร่งด่วนมาก</option>
                                       </select>
                                   </div>
 

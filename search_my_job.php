@@ -2,52 +2,56 @@
 include './dbconfig.php';
 include './header.php';
 include './navbar.php';
-ini_set('display_errors', 1);
-	error_reporting(~0);
-
-	$strKeyword = null;
-	if(isset($_POST["txtSerach"]))
-	{
-		$strKeyword = $_POST["txtSerach"];
-	}
 ?>
 <div class="page-content">
     <div class="row">
-        <?php include './sidebar.php'; ?>
+        <?php include './sidebar.php';
+        $name = $_SESSION["fullname"];?>
         <div class="col-md-10">
             <div class="content-box-large">
-                <h2 style="text-align: center;">ค้นหาข้อมูลรายงาน</h2>
+                <h2 style="text-align: center;">รายงานซัพพอร์ตของฉัน</h2>
                 <div class="row" style="padding-top: 30px;">
-                  <div class="col-md-4 col-xs-12"></div>
-                    <div class="col-md-4 col-xs-12">
-                        <form action="<?php echo $_SERVER['SCRIPT_NAME'];?>" method="post">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label>คำค้นหา</label>
-                                    <input id="txtSerach" name="txtSerach" class="form-control" value="" type="text" >
-                                </div>
-                            </fieldset>
-                            <div style="text-align: right">
-                                <button class="btn btn" type="submit"><i class="fas fa-search" style="padding-right: 5px;"></i> ค้นหา</button>
-                            </div>
-                        </form>
+                  <div class="col-md-3 col-xs-3"></div>
+                  <div class="col-md-6 col-xs-6">
+                    <div class="row borderbox" style="margin-top:10px; margin-bottom:20px; text-align:center">
+                      <?php
+                        $sql1 = "SELECT COUNT(job_status) as a FROM jobs_master WHERE username = '".$name."' AND job_status = '1'";
+                        $objQuery1 = mysqli_query($dbconfig, $sql1);
+                        $objResult1 = mysqli_fetch_array($objQuery1);
+
+                        $sql2 = "SELECT COUNT(job_status) as a FROM jobs_master WHERE username = '".$name."' AND job_status = '2'";
+                        $objQuery2 = mysqli_query($dbconfig, $sql2);
+                        $objResult2 = mysqli_fetch_array($objQuery2);
+
+                        $sql3 = "SELECT COUNT(job_status) as a FROM jobs_master WHERE username = '".$name."' AND job_status = '3'";
+                        $objQuery3 = mysqli_query($dbconfig, $sql3);
+                        $objResult3 = mysqli_fetch_array($objQuery3);
+
+                        $sql4 = "SELECT COUNT(job_status) as a FROM jobs_master WHERE username = '".$name."' AND job_status = '4'";
+                        $objQuery4 = mysqli_query($dbconfig, $sql4);
+                        $objResult4 = mysqli_fetch_array($objQuery4);
+                      ?>
+                      <div class="col-md-3 col-xs-3"><div style="color:gray;">เปิดรายงาน (<?php echo $objResult1["a"]; ?>)</div></div>
+                      <div class="col-md-3 col-xs-3"><div style="color:#ff8100;">อยู่ระหว่างดำเนินการ  (<?php echo $objResult2["a"]; ?>)</div></div>
+                      <div class="col-md-3 col-xs-3"><div style="color:green;">เสร็จเรียบร้อย (<?php echo $objResult3["a"]; ?>)</div></div>
+                      <div class="col-md-3 col-xs-3"><div style="color:red;">ยกเลิก  (<?php echo $objResult4["a"]; ?>)</div></div>
                     </div>
-                    <div class="col-md-4 col-xs-12"></div>
+                  </div>
+                  <div class="col-md-3 col-xs-3"></div>
                 </div>
                 <div class="row" style="padding-top: 30px;">
                   <div class="col-md-12">
                     <?php
-											$perpage = 10;
-											if (isset($_GET['page'])) {
-											$page = $_GET['page'];
-											} else {
-											$page = 1;
-											}
+                      $perpage = 10;
+                      if (isset($_GET['page'])) {
+                      $page = $_GET['page'];
+                      } else {
+                      $page = 1;
+                      }
 
-											$start = ($page - 1) * $perpage;
+                      $start = ($page - 1) * $perpage;
 
-                      $sqlselCus = "SELECT * FROM jobs_master JM INNER JOIN customer_master CM ON JM.Cus_id = CM.cus_id WHERE JM.Is_del = 0 AND (JM.job_id LIKE '%$strKeyword%' OR JM.job_title LIKE '%$strKeyword%' OR JM.job_detail LIKE '%$strKeyword%' OR JM.username LIKE '%$strKeyword%' ";
-											$sqlselCus .= "OR JM.contact_name LIKE '%$strKeyword%' or JM.contact_tel LIKE '%$strKeyword%' OR CM.cus_name LIKE '%$strKeyword%' OR CM.cus_initials LIKE '%$strKeyword%') limit {$start} , {$perpage} ";
+                      $sqlselCus = "SELECT * FROM jobs_master JM INNER JOIN customer_master CM ON JM.Cus_id = CM.cus_id WHERE JM.Is_del = 0 AND JM.username = '".$name."'  limit {$start} , {$perpage} ";
                       $objQuery2= mysqli_query($dbconfig, $sqlselCus);
                     ?>
 										<div class="table-responsive">
@@ -113,19 +117,17 @@ ini_set('display_errors', 1);
 													<td><?php echo $e; ?></td>
                           <td><?php echo $diff->format("%a วัน"); ?></td>
                           <td style="font-size : 18px;"><!--<a href="#" class="btn btn-primary" role="button" style="margin-right:3px;"><i class="fas fa-search"></i></a>-->
-													<a href="job_detail.php?id=<?php echo $objResultselCus['job_id']; ?>" class="btn btn-info" role="button">ดูรายละเอียด</a></td>
+													<a href="job_detail.php?id=<?php echo $objResultselCus['job_id']; ?>&st=my" class="btn btn-info" role="button">ดูรายละเอียด</a></td>
                         </tr>
                         <?php
                             }
-
                             ?>
                       </tbody>
                     </table>
 									</div>
                     <div class="" style="text-align:center; color: gray; font-style: italic;">
-											<?php
-											$sql2 = "SELECT * FROM jobs_master JM INNER JOIN customer_master CM ON JM.Cus_id = CM.cus_id WHERE JM.Is_del = 0 AND (JM.job_id LIKE '%$strKeyword%' OR JM.job_title LIKE '%$strKeyword%' OR JM.job_detail LIKE '%$strKeyword%' OR JM.username LIKE '%$strKeyword%' ";
-											$sql2 .= "OR JM.contact_name LIKE '%$strKeyword%' or JM.contact_tel LIKE '%$strKeyword%' OR CM.cus_name LIKE '%$strKeyword%' OR CM.cus_initials LIKE '%$strKeyword%')";
+                      <?php
+											$sql2 = "SELECT * FROM jobs_master JM INNER JOIN customer_master CM ON JM.Cus_id = CM.cus_id WHERE JM.Is_del = 0 AND JM.username = '".$name."'";
 
 											$query2 = mysqli_query($dbconfig, $sql2);
 											$total_record = mysqli_num_rows($query2);
@@ -134,15 +136,15 @@ ini_set('display_errors', 1);
 											<nav>
 												 <ul class="pagination">
 													 <li>
-														 <a href="search_job.php?page=1" aria-label="Previous">
+														 <a href="search_my_job.php?page=1" aria-label="Previous">
 														 <span aria-hidden="true">&laquo;</span>
 														 </a>
 													 </li>
 													 <?php for($i=1;$i<=$total_page;$i++){ ?>
-													 <li><a href="search_job.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+													 <li><a href="search_my_job.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 													 <?php } ?>
 													 <li>
-													 <a href="search_job.php?page=<?php echo $total_page;?>" aria-label="Next">
+													 <a href="search_my_job.php?page=<?php echo $total_page;?>" aria-label="Next">
 													 <span aria-hidden="true">&raquo;</span>
 													 </a>
 													 </li>

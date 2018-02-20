@@ -37,7 +37,16 @@ ini_set('display_errors', 1);
                 <div class="row" style="padding-top: 30px;">
                   <div class="col-md-12">
                     <?php
-                      $sqlselCus = "SELECT * FROM customer_master WHERE Is_del = 0 AND (cus_id LIKE '%$strKeyword%' OR permit_id LIKE '%$strKeyword%' OR cus_name LIKE '%$strKeyword%' OR cus_initials LIKE '%$strKeyword%' OR contact_name LIKE '%$strKeyword%' or contact_tel LIKE '%$strKeyword%')";
+											$perpage = 10;
+											if (isset($_GET['page'])) {
+											$page = $_GET['page'];
+											} else {
+											$page = 1;
+											}
+
+											$start = ($page - 1) * $perpage;
+
+                      $sqlselCus = "SELECT * FROM customer_master WHERE Is_del = 0 AND (cus_id LIKE '%$strKeyword%' OR permit_id LIKE '%$strKeyword%' OR cus_name LIKE '%$strKeyword%' OR cus_initials LIKE '%$strKeyword%' OR contact_name LIKE '%$strKeyword%' or contact_tel LIKE '%$strKeyword%')  limit {$start} , {$perpage} ";
                       $objQuery2= mysqli_query($dbconfig, $sqlselCus);
                     ?>
 										<div class="table-responsive">
@@ -71,13 +80,36 @@ ini_set('display_errors', 1);
                         </tr>
                         <?php
                             }
-                            mysqli_close($dbconfig);
+
                             ?>
                       </tbody>
                     </table>
 									</div>
                     <div class="" style="text-align:center; color: gray; font-style: italic;">
-                      พบข้อมูลจำนวน <?php echo $xt; ?> แถว
+											<?php
+											$sql2 = "SELECT * FROM customer_master WHERE Is_del = 0 AND (cus_id LIKE '%$strKeyword%' OR permit_id LIKE '%$strKeyword%' OR cus_name LIKE '%$strKeyword%' OR cus_initials LIKE '%$strKeyword%' OR contact_name LIKE '%$strKeyword%' or contact_tel LIKE '%$strKeyword%')";
+
+											$query2 = mysqli_query($dbconfig, $sql2);
+											$total_record = mysqli_num_rows($query2);
+											$total_page = ceil($total_record / $perpage);
+											?>
+											<nav>
+												 <ul class="pagination">
+													 <li>
+														 <a href="search_customer.php?page=1" aria-label="Previous">
+														 <span aria-hidden="true">&laquo;</span>
+														 </a>
+													 </li>
+													 <?php for($i=1;$i<=$total_page;$i++){ ?>
+													 <li><a href="search_customer.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+													 <?php } ?>
+													 <li>
+													 <a href="search_customer.php?page=<?php echo $total_page;?>" aria-label="Next">
+													 <span aria-hidden="true">&raquo;</span>
+													 </a>
+													 </li>
+												 </ul>
+										 	</nav>
                     </div>
                   </div>
                 </div>

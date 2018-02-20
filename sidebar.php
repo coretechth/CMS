@@ -28,6 +28,7 @@ if ($_SESSION['UserID'] == "") {
                 <ul>
                     <li><a href="addSupportTK.php">เปิดรายงาน</a></li>
                     <li><a href="search_job.php">ดูรายงานทั้งหมด</a></li>
+                    <li><a href="search_my_job.php">ดูรายงานของฉัน</a></li>
                 </ul>
             </li>
             <li class="submenu">
@@ -47,6 +48,15 @@ if ($_SESSION['UserID'] == "") {
 
                     <li><a href="search_customer.php">ค้นหาข้อมูลลูกค้า</a></li>
                 </ul>
+            </li>
+            <li class="submenu">
+              <a href="#">
+                  <i class="fa fa-clipboard"></i> การเงิน
+                  <span class="caret pull-right"></span>
+              </a>
+              <ul>
+                  <li><a href="addPV.php">เปิดเงินสดย่อย</a></li>
+              </ul>
             </li>
             <!--
             <li class="submenu">

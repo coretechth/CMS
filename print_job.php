@@ -44,7 +44,7 @@ $job_id = $_REQUEST['job_id'];
             <img src="images\ico.png" alt="" style="width: 70px;">
           </div>
           <div class="row" style="font-size:30px; text-align:center;">บริษัท คอร์เทค คอร์ปอเรชั่น จำกัด</div>
-          <div class="row" style="font-size:20px; text-align:center; margin-bottom:20px;">36/167 ถ.มอเตอร์เวย์ แขวงคลองสองต้นนุ่น เขตลาดกระบัง กรุงเทพฯ 10520</div>
+          <div class="row" style="font-size:20px; text-align:center; margin-bottom:20px; margin-top: -13px;">36/167 ถ.มอเตอร์เวย์ แขวงคลองสองต้นนุ่น เขตลาดกระบัง กรุงเทพฯ 10520</div>
           <div class="row" style="font-size:30px; text-align:center; margin-bottom:20px;">รายงานการดำเนินงาน</div>
 
           <div class="row" style="margin-bottom:10px;">
@@ -75,16 +75,39 @@ $job_id = $_REQUEST['job_id'];
                 </div>
             </div>
           </div>
-          <div class="row borderbox" style="margin-bottom: 10px;">
-            <div class="row">
-
-          </div>
+          <div class="row borderbox" style="margin-bottom: 10px; height: 730px;">
+            <div class="row" style="">
+              <div class="col-md-1 col-xs-1" style="text-align:center">ลำดับ</div>
+              <div class="col-md-2 col-xs-2" style="text-align:center">วันที่</div>
+              <div class="col-md-9 col-xs-9">รายละเอียด</div>
+            </div>
+            <hr style="margin: 5px 0px 5px 0px;">
+            <?php
+                   $sqlJobDetail = "SELECT * FROM jobs_detail WHERE job_id = '".$job_id."' AND Is_del = 0";
+                   $objQueryJobDetail= mysqli_query($dbconfig, $sqlJobDetail);
+                   $xt = 0;
+                   while ($objResultselCus = mysqli_fetch_array($objQueryJobDetail)) {
+                     $xt += 1;
+                     $ddate = date_create($objResultselCus["create_date"]);
+                 ?>
+                 <div class="row">
+                   <div class="col-md-1 col-xs-1" style="text-align:center"><?php echo $xt; ?></div>
+                   <div class="col-md-2 col-xs-2" style="text-align:center"><?php echo date_format($ddate,"d-m-Y"); ?></div>
+                   <div class="col-md-9 col-xs-9"><?php echo $objResultselCus["job_detail"]; ?></div>
+                 </div>
+                 <?php } ?>
         </div>
-
           <?php
         }
           ?>
     </article>
   </section>
+  <!--<section class="sheet padding-10mm">
+    <article>
+      <div class="">
+        ทดสอบการแสดงผลหน้าที่สอง
+      </div>
+    </article>
+  </section>-->
 </body>
 </html>

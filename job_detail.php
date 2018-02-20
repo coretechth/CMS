@@ -4,6 +4,9 @@ include './header.php';
 include './navbar.php';
 
 $job_id = $_REQUEST['id'];
+if (isset($_REQUEST['st'])) {
+  $status= $_REQUEST['st'];
+}
 ?>
 <script>
 function myFunction() {
@@ -122,7 +125,7 @@ function myFunction() {
                               <div class="col-md-9 col-xs-5" style="text-align:left"><?php echo $objResultselCus["job_detail"]; ?></div>
                               <div class="col-md-1 col-xs-2" style="text-align:right">
                                <?php   if($_SESSION["fullname"] == $fullname && $job!=3 && $job!=4){?>
-                                 ?>
+
                                  <a href="del_job_detail.php?id=<?php echo $objResultselCus['jd_id']; ?>&jobid=<?php echo $job_id; ?>"
                                    class="btndeljb" onclick="return confirm('ต้องการลบข้อมูลใช่หรือไม่?');">ลบ</a>
                                  <?php
@@ -156,7 +159,13 @@ function myFunction() {
                             <hr>
                             <div style="text-align: center">
                                 <button class="btn btn-success" type="submit"><i class="far fa-edit" style="padding-right: 5px;"></i> บันทึกรายงาน</button>
-                                <a href="search_job.php" class="btn btn-default"><i class="fas fa-undo-alt" style="padding-right: 5px;"></i> ย้อนกลับ</a>
+                                <?php
+                                if ($status='my') {
+                                  $url = "search_my_job.php";
+                                }else {
+                                  $url = "search_job.php";
+                                } ?>
+                                <a href="<?php echo $url; ?>" class="btn btn-default"><i class="fas fa-undo-alt" style="padding-right: 5px;"></i> ย้อนกลับ</a>
                             </div>
                           </form>
                         </div>
