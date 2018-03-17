@@ -12,7 +12,7 @@
                     <div class="col-md-3 col-xs-3"></div>
                     <div class="col-md-6 col-xs-6">
                       <?php
-                        $id = "SELECT ID FROM pv_master ORDER BY id DESC LIMIT 1";
+                        $id = "SELECT * FROM pv_master ORDER BY id DESC LIMIT 1";
                         $obj = mysqli_query($dbconfig, $id);
                         $objResult = mysqli_fetch_array($obj);
                         $_SESSION["idid"] = $objResult["id"];
@@ -21,11 +21,8 @@
                           $_SESSION["idid"] = 1;
                         }
                       ?>
-                        <form action="addPV_process.php" onsubmit="return confirm('Do you really want to submit the form?');" method="GET">
+                        <form action="add_dp_process.php" onsubmit="return confirm('Do you really want to submit the form?');" method="GET">
                             <fieldset>
-                              <div class="form-group">
-                                  <label>ลำดับเอกสาร : <?php echo $_SESSION["idid"]; ?></label>
-                              </div>
                                 <div class="form-group">
                                   <?php
                                     $usersel = "SELECT * FROM user_master WHERE rolee = 0 ORDER BY fullname ASC";
@@ -38,7 +35,7 @@
                                         <?php
                                           while ($reusersel = mysqli_fetch_array($objQuery)) {
                                          ?>
-                                          <option value="<?php echo $reusersel['fullname']; ?>"><?php echo $reusersel["fullname"]; ?></option>
+                                          <option value="<?php echo $reusersel['username']; ?>"><?php echo $reusersel["fullname"]; ?></option>
                                           <?php
                                               }
                                               ?>
@@ -52,31 +49,10 @@
                                         <input id="txtDate"  name="txtDate" type="date" class="form-control" placeholder="" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>รายการ</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2"><i class="fas fa-file-alt"></i></span>
-                                        <input id="txtName"  name="txtName" type="text" class="form-control" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>เหตุผล</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2"><i class="fas fa-file-alt"></i></span>
-                                        <input id="txtReson"  name="txtReson" type="text" class="form-control" placeholder="" >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>จำนวนเงิน</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="sizing-addon2"><i class="fas fa-file"></i></span>
-                                        <input id="txtMoney"  name="txtMoney" type="number" class="form-control" placeholder="" >
-                                    </div>
-                                </div>
                             </fieldset>
                             <hr>
-                            <div style="text-align: left">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-save" style="padding-right: 5px;"></i> ยื่นคำขอ</button>
+                            <div style="text-align: center">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-save" style="padding-right: 5px;"></i> เปิดใบเบิก</button>
                                 <button class="btn btn-danger" type="reset"><i class="fa fa-close" style="padding-right: 5px;"></i> ยกเลิก</button>
                             </div>
                         </form>
