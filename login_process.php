@@ -5,7 +5,7 @@ $strSQL = "SELECT * FROM user_master WHERE username='$_POST[txtUsername]' and pa
 /*
 echo $strSQL;
 */
-$objQuery = mysqli_query($dbconfig, $strSQL);
+	$objQuery = mysqli_query($dbconfig, $strSQL);
 	$objResult = mysqli_fetch_array($objQuery);
 	if(!$objResult)
 	{

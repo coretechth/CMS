@@ -1,7 +1,13 @@
 <?php include './header.php'; ?>
 <?php include './navbar.php'; ?>
 <?php include './dbconfig.php' ?>
-
+<script language="JavaScript">
+  function chkNum(ele)
+  {
+    var num = parseFloat(ele.value);
+    ele.value = num.toFixed(2);
+  }
+</script>
 <div class="page-content">
     <div class="row">
         <?php include './sidebar.php'; ?>
@@ -11,31 +17,22 @@
                 <div class="row" style="padding-top: 30px;">
                     <div class="col-md-3 col-xs-3"></div>
                     <div class="col-md-6 col-xs-6">
-                      <?php
-                        $id = "SELECT * FROM pv_master ORDER BY id DESC LIMIT 1";
-                        $obj = mysqli_query($dbconfig, $id);
-                        $objResult = mysqli_fetch_array($obj);
-                        $_SESSION["idid"] = $objResult["id"];
-                        if(!$objResult)
-                        {
-                          $_SESSION["idid"] = 1;
-                        }
-                      ?>
-                        <form action="add_dp_process.php" onsubmit="return confirm('Do you really want to submit the form?');" method="GET">
+                        <form action="add_cash_process.php" onsubmit="return confirm('Do you really want to submit the form?');" method="GET">
                             <fieldset>
                                 <div class="form-group">
                                   <?php
-                                    $usersel = "SELECT * FROM user_master WHERE rolee = 0 ORDER BY fullname ASC";
+                                    $usersel = "SELECT * FROM user_master WHERE rolee = 0 OR rolee = 4 ORDER BY fullname ASC";
                                     $objQuery = mysqli_query($dbconfig, $usersel);
                                   ?>
                                   <label>ผู้สำรอง </label>
                                   <div class="input-group">
                                       <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-tags"></i></span>
                                       <select class="form-control" name="txtUName" id="txtUName" required="">
+                                        <option value="เงินทดรองจ่าย">เงินทดรองจ่าย</option>
                                         <?php
                                           while ($reusersel = mysqli_fetch_array($objQuery)) {
                                          ?>
-                                          <option value="<?php echo $reusersel['username']; ?>"><?php echo $reusersel["fullname"]; ?></option>
+                                          <option value="<?php echo $reusersel['fullname']; ?>"><?php echo $reusersel["fullname"]; ?></option>
                                           <?php
                                               }
                                               ?>
@@ -79,13 +76,20 @@
                                     <label>จำนวนเงิน</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="sizing-addon2"><i class="fas fa-file-alt"></i></span>
-                                        <input id="txtAmount"  name="txtAmount" type="number" class="form-control" placeholder="" required>
+                                        <input id="txtAmount" OnChange="JavaScript:chkNum(this)" name="txtAmount" type="text" class="form-control" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>หมายเหตุ</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="sizing-addon2"><i class="fas fa-file-alt"></i></span>
+                                        <input id="txtRemark"  name="txtRemark" type="text" class="form-control" placeholder="">
                                     </div>
                                 </div>
                             </fieldset>
                             <hr>
                             <div style="text-align: center">
-                                <button class="btn btn-success" type="submit"><i class="fa fa-save" style="padding-right: 5px;"></i> เปิดใบเบิก</button>
+                                <button class="btn btn-success" type="submit"><i class="fa fa-save" style="padding-right: 5px;"></i> บันทึกข้อมูล</button>
                                 <button class="btn btn-danger" type="reset"><i class="fa fa-close" style="padding-right: 5px;"></i> ยกเลิก</button>
                             </div>
                         </form>

@@ -55,7 +55,10 @@ if ($_SESSION['UserID'] == "") {
                   <span class="caret pull-right"></span>
               </a>
               <ul>
-                  <li><a href="add_dp.php">เปิดเงินสดย่อย</a></li>
+                  <li><a href="add_cash.php">ลงบันทึกค่าใช้จ่าย</a></li>
+                  <li><a href="add_pc.php">เบิกเงินสดย่อย</a></li>
+                  <li><a href="search_cash.php">ดูข้อมูลบันทึกค่าใช้จ่าย</a></li>
+                  <li><a href="search_pc.php">ดูข้อมูลเงินสดย่อย</a></li>
               </ul>
             </li>
             <!--

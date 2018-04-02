@@ -4,9 +4,10 @@ include './dbconfig.php';
 $user = $_GET['txtUName'];
 $ddate = $_GET['txtDate'];
 $type = $_GET['txtType'];
-$user = $_GET['txtDetail'];
-$user = $_GET['txtUName'];
-
+$detail = $_GET['txtDetail'];
+$amount = $_GET['txtAmount'];
+$remark = $_GET['txtRemark'];
+/*
 $a = date("Y")+543;
 $year = substr($a,2);
 $sid = "AOT".$year.date("m")."-";
@@ -24,12 +25,9 @@ if($row==0){
   $p2 = $cusid[1];
   $p3 = $cusid[2];
 
-  /*ตรวจสอบเลขหลักแรก = 0XX*/
   if($p1==0){
-    /*ตรวจสอบเลขหลักสอง = 00X */
     if($p2==0){
       $x = $p3+1;
-      /*ตรวจสอบผลการบวกเลข = 01X */
       if($x>=10){
         $id = "AOT".$year.date("m")."-"."0".$x;
       }else {
@@ -48,20 +46,19 @@ if($row==0){
     $id = "AOT".$year.date("m")."-".$x;
   }
 }
-
-echo $id.$user.$ddate;
-$sqlinst = "INSERT INTO cash_master (cash_id, emp_name, type_id, list, amount, create_date, Is_del)";
-$sqlinst .= " VALUES ('$id','$user','$ddate',1,0)";
+*/
+if ($user=='เงินทดรองจ่าย') {
+  $sqlinst = "INSERT INTO cash_master (cash_id, emp_name, type_id, list, amount, pay_date, create_date, Is_del, remark, cash_status)";
+  $sqlinst .= " VALUES ('','$user','$type','$detail','$amount','$ddate',NOW(),0,'$remark',2)";
+}else {
+  $sqlinst = "INSERT INTO cash_master (cash_id, emp_name, type_id, list, amount, pay_date, create_date, Is_del, remark)";
+  $sqlinst .= " VALUES ('','$user','$type','$detail','$amount','$ddate',NOW(),0,'$remark')";
+}
 
 $objQuery2 = mysqli_query($dbconfig, $sqlinst);
 
 if ($objQuery2) {
-  session_start();
-  $_SESSION["pvid"] = $id;
-
-    echo "<script>window.location.href='add_dp_detail.php?id=".$id."';</script>";
+  echo "<script>alert('บันทึกข้อมูลเรียบร้อย');window.location.href='search_cash.php';</script>";
 } else {
-    echo "<script>alert('บันทึกข้อมูลไม่สำเร็จ');window.location.href='add_dp.php';</script>";
-  }
-
- ?>
+    echo "<script>alert('บันทึกข้อมูลไม่สำเร็จ');window.location.href='add_cash.php';</script>";
+}?>
